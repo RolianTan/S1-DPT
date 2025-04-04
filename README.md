@@ -1,5 +1,4 @@
 # Method 1: S1-DPT
-## TODO List
 
 ## Naive Plan
 For simplicity, just random choose **N** samples from MATH500:  
@@ -26,7 +25,8 @@ For sample A in N:
 
 Continue to next sample B in N. Print out the accuracy for each trigger instructions and select the best performance one. 
 ```  
-  
+
+# TODO List
 #### Discrete Prompt Optimization Part
 - [x] API modification (new version OpenAI API that supports DeepSeek)
 - [x] Prompt template modification
