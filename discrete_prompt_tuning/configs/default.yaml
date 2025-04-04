@@ -1,0 +1,39 @@
+generation:
+  num_subsamples: 5 # num of request
+  num_demos: 10 # training sample used
+  num_prompts_per_subsample: 1 # prompt per request
+  model:
+    name: GPT_forward
+    batch_size: 500
+    gpt_config:
+      model: deepseek-chat
+      temperature: 0.9
+      max_tokens: 500
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+evaluation:
+  method: sample
+  num_samples: 10
+  num_few_shot: 6 # demo nums (removed)
+  model:
+    name: GPT_forward
+    batch_size: 100 # eval batch size
+    gpt_config:
+      model: deepseek-chat
+      temperature: 0.7
+      max_tokens: 500
+      top_p: 1.0
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+demo:
+  model:
+    name: GPT_forward
+    batch_size: 500
+    gpt_config:
+      model: text-davinci-002
+      temperature: 0.7
+      max_tokens: 200
+      top_p: 1.0
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
