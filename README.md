@@ -14,7 +14,7 @@ For sample A in N:
 
  Prompt format:
    A student is trying to solve a math question, he provide his thinking process, please provide an instruction that could help him better recheck and continue his  
-   thoughts, the instruction should be general not specific to this problem.
+   thoughts, the instruction should be a general guide not specific to this problem.
    The math question is: [Question]
    The student thinking process: [Thought]
    The correct answer: [Answer]
