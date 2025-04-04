@@ -1,13 +1,13 @@
 # Method 1: S1-DPT
 ## TODO List
 
-## Naive Plan
-For simplicity, just random choose **N** samples from MATH500:
-For sample A in N:
-  **s1:**
-  Sample A -> s1 infer -> first stop -> store the current thinking process in [Thought]
+## Naive Plan  
+For simplicity, just random choose **N** samples from MATH500:  
+For sample A in N:  
+  **s1:**  
+  Sample A -> s1 infer -> first stop -> store the current thinking process in [Thought]  
   
-  **dpt:**
+  **dpt:**  
   Sample A (Use the same sample from s1)  -api (use prompt)-> generate 10 continuous instructions -> evaluate their correction ability  
   
   ```bash
@@ -20,10 +20,10 @@ For sample A in N:
       Your instruction is: [Instruction]
   ```
  
-  To evaluate (for each [Instruction]):
-  	All sample in MATH500 -> s1 infer -> append [Instruction] -> restart infer -> new response -> compute the accuracy
+  To evaluate (for each [Instruction]):  
+  	All sample in MATH500 -> s1 infer -> append [Instruction] -> restart infer -> new response -> compute the accuracy  
 
-Continue to next sample B in N. Print out the accuracy for each trigger instructions and select the best performance one.
+Continue to next sample B in N. Print out the accuracy for each trigger instructions and select the best performance one.  
 
 #### Discrete Prompt Optimization Part
 - [x] API modification (new version OpenAI API that supports DeepSeek)
