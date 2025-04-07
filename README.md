@@ -36,10 +36,14 @@ Continue to next sample B in N. Print out the accuracy for each trigger instruct
 #### S1.1 Part
 - [x] Create s1 stage 1 module for thinking process retrieving
 - [x] Create s1 stage 2 module for CTI replaced inference/evaluation
-- [ ] Debug
+- [x] Debug
 
 #### Main Process Development Part
 - [x] Load MATH500 test dataset
 - [x] Develop basic structure that insert DPT into s1 inference process
 - [x] Log Saving
-- [ ] Debug
+- [x] Debug
+
+#### Experiments
+- [x] debug on s1.1-1.5B + DeepSeek V3
+- [ ] full runs on s1.1-32B + DeepSeek V3
