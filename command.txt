@@ -1,0 +1,5 @@
+pip install -r requirements.txt
+
+git clone https://github.com/openai/prm800k.git
+
+replace api key in llm.py

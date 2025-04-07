@@ -7,11 +7,13 @@ def subsample_data(data, subsample_size):
     """
     inputs, outputs = data
     assert len(inputs) == len(outputs)
+    # indices = random.sample(range(len(inputs)), subsample_size)
+    if subsample_size > len(inputs):
+        subsample_size = len(inputs)
     indices = random.sample(range(len(inputs)), subsample_size)
     inputs = [inputs[i] for i in indices]
     outputs = [outputs[i] for i in indices]
     return inputs, outputs
-
 
 def create_split(data, split_size):
     """

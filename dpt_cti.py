@@ -5,7 +5,7 @@ def cti_generation(dataset,
                       demos_template='Input: [INPUT]\nOutput: [OUTPUT]',
                       prompt_gen_template=None,
                       prompt_gen_model='deepseek-chat',
-                      num_prompts=10):
+                      num_prompts=5):
 
     # DPT-style discrete prompt generation tailored for MATH500 format.
     conf = config.simple_config(eval_model=prompt_gen_model, prompt_gen_model=prompt_gen_model)

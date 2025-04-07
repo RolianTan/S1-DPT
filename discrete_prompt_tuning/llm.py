@@ -10,7 +10,7 @@ from openai import OpenAI
 # deepseek V3
 client = OpenAI(api_key="", base_url="https://api.deepseek.com/beta")
 # gpt
-client = OpenAI(api_key="")
+# client = OpenAI(api_key="")
 
 def format_response_to_old_api(responses):
     formatted_response = {
