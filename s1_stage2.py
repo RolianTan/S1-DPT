@@ -30,7 +30,7 @@ class S1Stage2:
         # Num of times to skip stop token
         for i in range(NUM_IGNORE):
             # max_tokens_thinking_tmp -= len(o[0].outputs[0].token_ids)
-            prompt += o[0].outputs[0].text + "rethink hint:" + ignore_str + "now please rethink and answer."
+            prompt += o[0].outputs[0].text + "Wait, rethink hint:" + ignore_str + "now please rethink and answer."
             # print(prompt)
             # print("------------------------------------------------------------")
             sampling_params = SamplingParams(

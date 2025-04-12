@@ -6,10 +6,12 @@ from s1_stage1 import S1Stage1
 from s1_stage2 import S1Stage2
 from dpt_cti import cti_generation
 from prm800k.prm800k.grading.grader import grade_answer
+import csv
+
 
 # PART: Settings
-N = 1
-NUM_CTI_PER_SAMPLE = 10
+N = 10
+NUM_CTI_PER_SAMPLE = 1
 
 # PART: Load MATH500
 ds = load_dataset("HuggingFaceH4/MATH-500")
@@ -31,16 +33,68 @@ The instruction should be short and precise, less than 1000 tokens. The instruct
 Your instruction is: [APE]
 """
 
+def extract_boxed_content(result):
+    start = result.find(r'\boxed{')
+    if start == -1:
+        return result  # No \boxed found
+
+    start += len(r'\boxed{')
+    brace_count = 1
+    i = start
+    while i < len(result):
+        if result[i] == '{':
+            brace_count += 1
+        elif result[i] == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                return result[start:i]
+        i += 1
+    return result
+
+def extract_text_content(result):
+    start = result.find(r'\text{')
+    if start == -1:
+        return result  # No \boxed found
+
+    start += len(r'\text{')
+    brace_count = 1
+    i = start
+    while i < len(result):
+        if result[i] == '{':
+            brace_count += 1
+        elif result[i] == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                return result[start:i]
+        i += 1
+    return result
+
+
 def extract_math_answer(text):
     marker = "<|im_start|>answer"
+    result = ""
     if marker in text:
-        return text.split(marker)[-1].strip()
-    return text.strip()
+        result = text.split(marker)[-1].strip()
+    else:
+        result = text.strip()
+    # Remove everything after "<|im_end|>"(including"<|im_end|>")
+    if "<|im_end|>" in result:
+        result = result.split("<|im_end|>")[0].strip()
+    # Remove everything after ""<|endoftext|>""
+    if "<|endoftext|>" in result:
+        result = result.split("<|endoftext|>")[0].strip()
+    
+    # if \boxed{...} in result, extract the content inside \boxed{...}
+    # make sure the {} inside \boxed{...} is paired
+    result = extract_text_content(result)
+    result = extract_boxed_content(result)
+
+    return result
 
 
 # Part: CTI Evaluation
 final_cti_results = []
-
+all_predictions = []
 for idx, sample in enumerate(selected_samples):
     print(f"Processing Sample {idx+1}/{N}")
     question, solution, answer = sample["problem"], sample["solution"], sample["answer"]
@@ -69,7 +123,7 @@ for idx, sample in enumerate(selected_samples):
     s1_stage2 = S1Stage2()
     for cti in ctis:
         correct = 0
-        for test_sample in math_data:
+        for test_sample in math_data[0:100]:
         # for test_sample in random.sample(list(math_data), 5): # debug
             test_problem, test_answer = test_sample["problem"], test_sample["answer"]
             # For each test sample, run CTI with full s1 process
@@ -85,7 +139,13 @@ for idx, sample in enumerate(selected_samples):
                 print("correct")
                 correct += 1
             # exit()
-        acc = correct / len(math_data)
+            all_predictions.append({
+                "problem": test_problem,
+                "cti": cti,
+                "predicted_answer": answer,
+                "true_answer": test_answer
+            })
+        acc = correct / len(math_data[0:100])
         final_cti_results.append({
             "cti": cti,
             "accuracy": acc
@@ -97,3 +157,15 @@ with open("cti_results_dpt.json", "w") as f:
     json.dump(final_cti_results, f, indent=2)
 
 print("Done. Final CTI results saved to cti_results_dpt.json.")
+
+
+csv_filename = "cti_prediction_results.csv"
+with open(csv_filename, mode='w', newline='', encoding='utf-8') as csvfile:
+    fieldnames = ["problem", "cti", "predicted_answer", "true_answer"]
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    for row in all_predictions:
+        writer.writerow(row)
+
+print(f"Detailed predictions saved to {csv_filename}")
