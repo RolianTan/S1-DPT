@@ -1,7 +1,7 @@
 generation:
-  num_subsamples: 5 # num of request
-  num_demos: 10 # training sample used
-  num_prompts_per_subsample: 1 # prompt per request
+  num_subsamples: 1 # num of request
+  num_demos: 1 # training sample used
+  num_prompts_per_subsample: 5 # prompt per request
   model:
     name: GPT_forward
     batch_size: 500

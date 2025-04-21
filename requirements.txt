@@ -16,5 +16,6 @@ tqdm
 gradio
 sympy
 pylatexenc
+tqdm
 # Trouble shooting: deepseed engine issues
 # pydantic==1.10.9

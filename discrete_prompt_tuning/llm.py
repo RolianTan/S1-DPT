@@ -8,7 +8,7 @@ import tiktoken
 from openai import OpenAI
 
 # deepseek V3
-client = OpenAI(api_key="", base_url="https://api.deepseek.com/beta")
+client = OpenAI(api_key="sk-0f5755beebcb4aaea6bf84ec545fc2e8", base_url="https://api.deepseek.com/beta")
 # gpt
 # client = OpenAI(api_key="")
 

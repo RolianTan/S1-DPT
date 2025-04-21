@@ -1,7 +1,7 @@
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 
-MAX_TOKENS_THINKING = 3200
+MAX_TOKENS_THINKING = 15000
 
 # Just retrieve the thinking process (before the first time stop)
 class S1Stage1:
@@ -18,7 +18,7 @@ class S1Stage1:
 
     def extract_thought(self, problem):
         prompt = (
-            "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant. The thinking process should be shorter than 2000 tokens.<|im_end|>\n"
+            "<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant. The thinking process should be shorter than 15000 tokens.<|im_end|>\n"
             "<|im_start|>user\n" + problem + "<|im_end|>\n<|im_start|>assistant\n<|im_start|>think"
         )
         output = self.model.generate(prompt, sampling_params=self.sampling_params)[0].outputs[0].text
