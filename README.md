@@ -6,7 +6,7 @@ For sample A in N:
   Sample A -> s1 infer -> first stop -> store the current thinking process in [Thought]
 
   **dpt:**
-  Sample A (Use the same sample from s1) –api (use prompt)–> generate 10 continuous instructions –> evaluate their correction ability
+  Sample A (Use the same sample from s1) –api (use prompt)–> generate continuous instructions –> evaluate their correction ability
 
 
  Prompt format:
