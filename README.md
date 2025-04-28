@@ -1,8 +1,7 @@
-# Method 1: S1-DPT
-
-## Naive Plan
-For simplicity, just random choose **N** samples from MATH500:  
-```bash
+### 1. install required libraries using  ```bash pip install -r requirements.txt```  
+### 2. run 
+ 
+ ```bash
 For sample A in N:
 
   **s1:**
@@ -46,4 +45,4 @@ Continue to next sample B in N. Print out the accuracy for each trigger instruct
 
 #### Experiments
 - [x] debug on s1.1-1.5B + DeepSeek V3
-- [ ] full runs on s1.1-32B + DeepSeek V3
+- [x] full runs on s1.1-32B + DeepSeek V3
