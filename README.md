@@ -24,8 +24,8 @@ Continue to next sample B in N. Print out the accuracy for each trigger instruct
 ```
 
 # Implementation
-#### 1. install required libraries using  ```pip install -r requirements.txt```  
-#### 2. run ``` python main_s1_dpt.py```  
+#### 1. set up environment:  ```pip install -r requirements.txt```  
+#### 2. run: ``` python main_s1_dpt.py```  
 
 # TODO List
 #### Discrete Prompt Optimization Part
