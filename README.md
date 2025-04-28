@@ -1,4 +1,4 @@
-### 1. install required libraries using  ```bash pip install -r requirements.txt```  
+### 1. install required libraries using  ```pip install -r requirements.txt```  
 ### 2. run 
  
  ```bash
