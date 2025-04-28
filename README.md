@@ -1,4 +1,4 @@
-# Workflow: 
+# Workflow
  ```bash
 For sample A in N:
 
