@@ -1,6 +1,4 @@
-### 1. install required libraries using  ```pip install -r requirements.txt```  
-### 2. run 
- 
+# Workflow: 
  ```bash
 For sample A in N:
 
@@ -23,7 +21,11 @@ For sample A in N:
  All sample in MATH500 -> s1 infer -> append [Instruction] -> restart infer -> new response -> compute the accuracy
 
 Continue to next sample B in N. Print out the accuracy for each trigger instructions and select the best performance one. 
-```  
+```
+
+# Implementation
+#### 1. install required libraries using  ```pip install -r requirements.txt```  
+#### 2. run ``` python main_s1_dpt.py```  
 
 # TODO List
 #### Discrete Prompt Optimization Part
